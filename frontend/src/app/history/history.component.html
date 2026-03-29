@@ -1,0 +1,46 @@
+<div class="page-container">
+  <h2 class="page-title">📋 Session History</h2>
+  <p class="page-subtitle">All your AI coaching sessions saved here</p>
+
+  <div class="filter-row">
+    <button
+      *ngFor="let f of filters"
+      class="filter-btn"
+      [class.active]="filter === f.value"
+      (click)="filter = f.value">
+      {{ f.label }}
+    </button>
+  </div>
+
+  <div class="loading-box" *ngIf="loading">
+    <span class="spinner" style="border-color:#c7d2fe;border-top-color:#4f46e5;width:20px;height:20px;border-width:2px;"></span>
+    Loading sessions...
+  </div>
+
+  <div class="empty-state" *ngIf="!loading && filtered.length === 0">
+    <div class="empty-icon">🤖</div>
+    <p>No sessions yet. Go use one of the AI features!</p>
+  </div>
+
+  <div class="session-list" *ngIf="!loading">
+    <div class="session-card" *ngFor="let s of filtered; let i = index">
+      <div class="session-header" (click)="toggle(i)">
+        <div class="session-badge"
+             [style.background]="getInfo(s.sessionType).color + '18'"
+             [style.color]="getInfo(s.sessionType).color">
+          {{ getInfo(s.sessionType).icon }} {{ getInfo(s.sessionType).label }}
+        </div>
+        <div class="session-meta">
+          <span class="session-input">{{ s.userInput | slice:0:60 }}{{ s.userInput?.length > 60 ? '...' : '' }}</span>
+          <span class="session-date">{{ s.createdAt | date:'dd MMM yyyy, HH:mm' }}</span>
+        </div>
+        <span class="expand-icon">{{ expanded === i ? '▲' : '▼' }}</span>
+      </div>
+
+      <div class="session-body" *ngIf="expanded === i">
+        <div class="session-label">AI Response</div>
+        <div class="session-response">{{ s.aiResponse }}</div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,20 @@
+<div class="page-container">
+  <h2 class="page-title">🗺️ Learning Roadmap Generator</h2>
+  <p class="page-subtitle">Enter your target job role and get a complete step-by-step learning plan</p>
+
+  <div class="card">
+    <div class="alert-error" *ngIf="error">{{ error }}</div>
+    <div class="form-group">
+      <label>Target Role</label>
+      <input type="text" [(ngModel)]="targetRole"
+             placeholder="e.g. System Integrator, AI Engineer, Data Engineer"
+             (keyup.enter)="generate()" />
+    </div>
+    <button class="btn-primary" (click)="generate()" [disabled]="loading">
+      <span class="spinner" *ngIf="loading"></span>
+      {{ loading ? 'Building your roadmap...' : 'Generate Learning Roadmap' }}
+    </button>
+  </div>
+
+  <div class="ai-response" *ngIf="response">{{ response }}</div>
+</div>

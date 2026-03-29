@@ -1,0 +1,18 @@
+<div class="page-container">
+  <h2 class="page-title">📝 Resume Improvement Tips</h2>
+  <p class="page-subtitle">AI reviews your uploaded resume and gives you specific, actionable improvement suggestions</p>
+
+  <div class="card">
+    <div class="alert-error" *ngIf="error">{{ error }}</div>
+    <div class="info-box">
+      <span>🤖</span>
+      <p>AI will analyze your resume for: strengths, weaknesses, specific rewrites, and ATS optimization tips. Make sure your resume is uploaded from the <a routerLink="/resume">Resume page</a>.</p>
+    </div>
+    <button class="btn-primary" (click)="analyze()" [disabled]="loading" style="margin-top:16px;">
+      <span class="spinner" *ngIf="loading"></span>
+      {{ loading ? 'Analyzing your resume...' : 'Get Resume Tips' }}
+    </button>
+  </div>
+
+  <div class="ai-response" *ngIf="response">{{ response }}</div>
+</div>

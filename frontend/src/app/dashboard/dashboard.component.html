@@ -1,0 +1,39 @@
+<div class="page-container">
+
+  <div class="welcome-banner">
+    <div>
+      <h2>Welcome back, {{ name }} 👋</h2>
+      <p>What would you like to work on today?</p>
+    </div>
+    <div class="stats-row">
+      <div class="stat-pill">
+        <span class="stat-num">{{ stats.totalSessions || 0 }}</span>
+        <span class="stat-label">Total Sessions</span>
+      </div>
+      <div class="stat-pill">
+        <span class="stat-num">{{ stats.interviewSessions || 0 }}</span>
+        <span class="stat-label">Interviews</span>
+      </div>
+      <div class="stat-pill">
+        <span class="stat-num">{{ stats.roadmapSessions || 0 }}</span>
+        <span class="stat-label">Roadmaps</span>
+      </div>
+    </div>
+  </div>
+
+  <h3 class="section-title">Choose a Feature</h3>
+
+  <div class="features-grid">
+    <a class="feature-card" *ngFor="let f of features" [routerLink]="f.link">
+      <div class="feature-icon" [style.background]="f.color + '18'" [style.color]="f.color">
+        {{ f.icon }}
+      </div>
+      <div class="feature-body">
+        <h4>{{ f.title }}</h4>
+        <p>{{ f.desc }}</p>
+      </div>
+      <div class="feature-arrow" [style.color]="f.color">→</div>
+    </a>
+  </div>
+
+</div>

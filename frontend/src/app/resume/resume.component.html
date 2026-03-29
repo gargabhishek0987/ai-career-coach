@@ -1,0 +1,42 @@
+<div class="page-container">
+  <h2 class="page-title">Upload Resume</h2>
+  <p class="page-subtitle">Upload your PDF resume to unlock all AI coaching features</p>
+
+  <div class="alert-error"   *ngIf="error">{{ error }}</div>
+  <div class="alert-success" *ngIf="success">{{ success }}</div>
+
+  <div class="card">
+    <div class="drop-zone"
+         [class.drag-over]="dragOver"
+         (dragover)="onDragOver($event)"
+         (dragleave)="onDragLeave()"
+         (drop)="onDrop($event)"
+         (click)="fileInput.click()">
+      <div class="drop-icon">📄</div>
+      <p class="drop-title">{{ selectedFile ? selectedFile.name : 'Drop your PDF here' }}</p>
+      <p class="drop-sub">{{ selectedFile ? 'Ready to upload' : 'or click to browse' }}</p>
+      <input #fileInput type="file" accept=".pdf" (change)="onFileSelected($event)" style="display:none" />
+    </div>
+
+    <button class="btn-primary" (click)="upload()" [disabled]="!selectedFile || uploading" style="margin-top:16px;">
+      <span class="spinner" *ngIf="uploading"></span>
+      {{ uploading ? 'Uploading & Parsing...' : 'Upload Resume' }}
+    </button>
+  </div>
+
+  <div class="card" *ngIf="currentResume" style="margin-top:20px;">
+    <div class="resume-header">
+      <div class="resume-icon">📄</div>
+      <div>
+        <h3>{{ currentResume.fileName }}</h3>
+        <p>Uploaded on {{ currentResume.uploadedAt | date:'mediumDate' }}</p>
+      </div>
+    </div>
+    <div class="resume-text">{{ currentResume.extractedText }}</div>
+  </div>
+
+  <div class="loading-box" *ngIf="loading">
+    <span class="spinner" style="border-color:#c7d2fe;border-top-color:#4f46e5;"></span>
+    Loading your resume...
+  </div>
+</div>

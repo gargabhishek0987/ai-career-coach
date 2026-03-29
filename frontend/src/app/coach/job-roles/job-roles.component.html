@@ -1,0 +1,18 @@
+<div class="page-container">
+  <h2 class="page-title">💼 Job Role Suggestions</h2>
+  <p class="page-subtitle">AI analyzes your uploaded resume and suggests the best matching job roles for you</p>
+
+  <div class="card">
+    <div class="alert-error" *ngIf="error">{{ error }}</div>
+    <div class="info-box">
+      <span>📄</span>
+      <p>This feature uses your uploaded resume. Make sure you have uploaded your resume from the <a routerLink="/resume">Resume page</a> first.</p>
+    </div>
+    <button class="btn-primary" (click)="getSuggestions()" [disabled]="loading" style="margin-top:16px;">
+      <span class="spinner" *ngIf="loading"></span>
+      {{ loading ? 'Analyzing your resume...' : 'Get Job Suggestions' }}
+    </button>
+  </div>
+
+  <div class="ai-response" *ngIf="response">{{ response }}</div>
+</div>

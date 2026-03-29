@@ -1,0 +1,18 @@
+<div class="page-container">
+  <h2 class="page-title">🎯 Interview Question Generator</h2>
+  <p class="page-subtitle">Enter a job role and get 10 AI-generated interview questions with answer hints</p>
+
+  <div class="card">
+    <div class="alert-error" *ngIf="error">{{ error }}</div>
+    <div class="form-group">
+      <label>Job Role</label>
+      <input type="text" [(ngModel)]="jobRole" placeholder="e.g. System Integrator, Java Developer, Data Engineer" (keyup.enter)="generate()" />
+    </div>
+    <button class="btn-primary" (click)="generate()" [disabled]="loading">
+      <span class="spinner" *ngIf="loading"></span>
+      {{ loading ? 'Generating questions...' : 'Generate Interview Questions' }}
+    </button>
+  </div>
+
+  <div class="ai-response" *ngIf="response">{{ response }}</div>
+</div>

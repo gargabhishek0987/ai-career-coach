@@ -1,0 +1,21 @@
+<nav class="navbar">
+  <div class="nav-brand">
+    <div class="nav-icon">AI</div>
+    <span>Career Coach</span>
+  </div>
+
+  <div class="nav-links">
+    <a routerLink="/dashboard"       routerLinkActive="active">Dashboard</a>
+    <a routerLink="/resume"          routerLinkActive="active">Resume</a>
+    <a routerLink="/coach/interview" routerLinkActive="active">Interview</a>
+    <a routerLink="/coach/skill-gap" routerLinkActive="active">Skill Gap</a>
+    <a routerLink="/coach/job-roles" routerLinkActive="active">Job Roles</a>
+    <a routerLink="/coach/roadmap"   routerLinkActive="active">Roadmap</a>
+    <a routerLink="/history"         routerLinkActive="active">History</a>
+  </div>
+
+  <div class="nav-user">
+    <span class="user-name">{{ authService.getName() }}</span>
+    <button class="logout-btn" (click)="logout()">Logout</button>
+  </div>
+</nav>
