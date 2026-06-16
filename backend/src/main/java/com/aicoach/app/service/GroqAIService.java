@@ -29,6 +29,7 @@ public class GroqAIService {
             HttpHeaders headers = new HttpHeaders();
             headers.setContentType(MediaType.APPLICATION_JSON);
             headers.setBearerAuth(apiKey);
+            headers.set("User-Agent", "Mozilla/5.0 (Windows NT 10.0; Win64; x64) Chrome/120.0.0.0 Safari/537.36");
 
             Map<String, String> systemMsg = new HashMap<>();
             systemMsg.put("role", "system");
